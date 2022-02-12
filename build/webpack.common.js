@@ -3,6 +3,7 @@ const path = require("path");
 const chalk = require("chalk");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
+const { VueLoaderPlugin } = require("vue-loader"); // vue加载器
 console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 module.exports = {
   entry: path.resolve(__dirname, "../src/main.js"),
@@ -26,9 +27,15 @@ module.exports = {
     new ProgressBarPlugin({
       format: `  :msg [:bar] ${chalk.green.bold(":percent")} (:elapsed s)`,
     }),
+    new VueLoaderPlugin(),
   ],
   module: {
     rules: [
+      {
+        test: /\.vue$/,
+        loader: "vue-loader",
+        include: [path.resolve(__dirname, "../src")],
+      },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset",
@@ -42,5 +49,9 @@ module.exports = {
         exclude: /node_modules/,
       },
     ],
+  },
+  externals: {
+    vue: "Vue",
+    "vue-router": "VueRouter",
   },
 };

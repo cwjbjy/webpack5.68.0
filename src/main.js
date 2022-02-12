@@ -2,8 +2,18 @@ import "@/assets/styles/style.css";
 import "@/assets/styles/blue.scss";
 import "./echart";
 
+import App from "./App.vue";
+import router from "./router";
+Vue.config.productionTip = false;
+
+new Vue({
+  router,
+  render: (h) => h(App),
+}).$mount("#app");
+
 console.log("Intere11sting22311332");
 console.log(process.env);
+
 //在main.js添加
 function getComponent() {
   // Lodash, now imported by this script
