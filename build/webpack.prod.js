@@ -13,7 +13,6 @@ module.exports = merge(common, {
       filename: "static/css/[name].[contenthash:8].css",
     }),
     new CompressionPlugin(),
-    new CssMinimizerPlugin(),
   ],
   optimization: {
     splitChunks: {
@@ -46,6 +45,7 @@ module.exports = merge(common, {
         },
       },
     },
+    minimizer: [new CssMinimizerPlugin()],
   },
   module: {
     rules: [
