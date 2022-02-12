@@ -1,6 +1,7 @@
 body {
   background-color: aqua;
   background: url("../images/1.jpg") no-repeat;
+  font-size: 15px;
 }
 #app div {
   width: 200px;

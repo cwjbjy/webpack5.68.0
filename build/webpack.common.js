@@ -1,14 +1,22 @@
 //webpack.common.js
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const chalk = require("chalk");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
+console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 module.exports = {
   entry: path.resolve(__dirname, "../src/main.js"),
   output: {
     path: path.resolve(__dirname, "../dist"),
-    filename: "[name].bundle.js",
+    filename: "[name].[contenthash:8].js",
     clean: true, //每次构建清除dist包
+  },
+  resolve: {
+    extensions: [".js", ".jsx", ".json", ".vue"], //省略文件后缀
+    alias: {
+      //配置别名
+      "@": path.resolve(__dirname, "../src"),
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -21,22 +29,6 @@ module.exports = {
   ],
   module: {
     rules: [
-      {
-        test: /\.(css|scss|sass)$/,
-        use: [
-          "style-loader",
-          "css-loader",
-          "sass-loader",
-          {
-            loader: "postcss-loader",
-            options: {
-              postcssOptions: {
-                plugins: ["autoprefixer"],
-              },
-            },
-          },
-        ],
-      },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset",
