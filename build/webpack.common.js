@@ -6,7 +6,10 @@ const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader"); // vue加载器
 console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 module.exports = {
-  entry: path.resolve(__dirname, "../src/main.js"),
+  entry: {
+    main: path.resolve(__dirname, "../src/main.js"), //vue入口
+    index: path.resolve(__dirname, "../src/index.js"), //react入口
+  },
   output: {
     path: path.resolve(__dirname, "../dist"),
     filename: "[name].[contenthash:8].js",
