@@ -3,7 +3,7 @@ body {
   background: url("../images/1.jpg") no-repeat;
   font-size: 15px;
 }
-#app div {
+.app div {
   width: 200px;
   margin-top: 50px;
   transform: rotate(45deg); /* 这个属性会产生浏览器内核前缀如 -webkit*/
