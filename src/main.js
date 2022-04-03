@@ -13,6 +13,7 @@ new Vue({
 
 console.log("Intere11sting22311332");
 console.log(process.env);
+cnosole.log("12");
 
 //在main.js添加
 function getComponent() {
