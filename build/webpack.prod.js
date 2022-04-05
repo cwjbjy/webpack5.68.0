@@ -5,6 +5,8 @@ const BundleAnalyzerPlugin =
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const webpack = require("webpack");
+const env = require("../config/prod.env");
 module.exports = merge(common, {
   mode: "production",
   plugins: [
@@ -13,6 +15,9 @@ module.exports = merge(common, {
       filename: "static/css/[name].[contenthash:8].css",
     }),
     new CompressionPlugin(),
+    new webpack.DefinePlugin({
+      "process.env": env,
+    }),
   ],
   optimization: {
     splitChunks: {
